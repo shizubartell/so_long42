@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:42:09 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/24 18:50:01 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:46:07 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,12 @@ int     key_setup(int keyset, t_window *window)
     if (keyset == 53)
         ft_closing(window);
     return (0);
+}
+
+int		ft_closing(t_window *window)
+{
+		mlx_destroy_window(window->mlx, window->win);
+		printf("Exiting so_long");
+		exit (0);
+		return (0);
 }
