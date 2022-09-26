@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:01 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/25 20:58:42 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/24 19:19:52 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ typedef struct	s_window {
 
 int     ft_closing(t_window *window);
 int     key_setup(int keyset, t_window *window);
-int     nb_of_col(char **path);

@@ -6,12 +6,20 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:24 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/25 21:01:04 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/26 20:18:26 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx_opengl_20191021/mlx.h"
 #include "../inc/so_long.h"
+
+int		ft_closing(t_window *window)
+{
+		mlx_destroy_window(window->mlx, window->win);
+		printf("Exiting so_long");
+		exit (0);
+		return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -21,8 +29,14 @@ int	main(int ac, char **av)
 		int		width;
 		int		height;
 		int		fd;
+		// char	path_wall_tile[]="./images/lavatile.xpm";
+		// char	path_floor_tile[]="./images/floor.xpm";
+		// int		lavatile;
+		// int		floor;
+		// void	*img_wall;
+		// void	*img_floor;
 		char	*path_tile;
-		//int		nb_col;
+		int		nb_col;
 		void	*img;
 		char	*line;
 		char	**map;
@@ -34,8 +48,8 @@ int	main(int ac, char **av)
 		int		y;
 
 		fd = open(av[1], O_RDONLY);
-		//line = get_next_line(fd);
-		//nb_col = ft_strlen(line) - 1;
+		line = get_next_line(fd);
+		nb_col = ft_strlen(line) - 1;
 		nb_row = 0;
 		row_index = 1;
 		while(line != NULL)
@@ -44,7 +58,7 @@ int	main(int ac, char **av)
 			nb_row++;
 		}
 		close(fd);
-		printf("nb of column is: %d\n", nb_of_col);
+		printf("nb of column is: %d\n", nb_col);
 		printf("nb of rows is: %d\n", nb_row);
 		map = malloc(sizeof(char *) * (nb_row + 1));
 		window.tab = map;
@@ -63,7 +77,7 @@ int	main(int ac, char **av)
 		width = 64;
 		height = 64;
 		window.mlx = mlx_init();
-		window.win = mlx_new_window(window.mlx, nb_of_col*width, (row_index -1)*height, "so_long");
+		window.win = mlx_new_window(window.mlx, nb_col*width, (row_index -1)*height, "so_long");
 		printf("row_index is : %d\n", row_index);
 		j = 0;
 		while(j < nb_row)
@@ -76,10 +90,10 @@ int	main(int ac, char **av)
 					path_tile = "./images/walltile64x64.xpm";
 				else if (map[j][i] == '0')
 					path_tile = "./images/floortile64x64.xpm";
-				else if (map[j][i] == 'C')
-					path_tile = "./images/collect64x64.xpm";
 				else if (map[j][i] == 'P')
 					path_tile = "./images/boss64x64.xpm";
+				else if (map[j][i] == 'C')
+					path_tile = "./images/collect64x64.xpm";
 				img = mlx_xpm_file_to_image(window.mlx, path_tile, &width, &height);
 				mlx_put_image_to_window(window.mlx, window.win, img, x, y);
 				x = x + width;
