@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:01 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/24 19:19:52 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:15:12 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 #include "../ft_printf/ft_printf.h"
 #include "../get_next_line/get_next_line.h"
 
-typedef struct	s_window {
+typedef struct	s_game {
     void    *mlx;
     void    *win;
     char    **tab;
-}				t_window;
+    int     col;
+}				t_game;
 
-int     ft_closing(t_window *window);
-int     key_setup(int keyset, t_window *window);
+int     ft_closing(t_game *window);
+int     key_setup(int keyset, t_game *window);

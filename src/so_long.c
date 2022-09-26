@@ -6,14 +6,14 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:24 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/26 20:18:26 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:23:42 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx_opengl_20191021/mlx.h"
 #include "../inc/so_long.h"
 
-int		ft_closing(t_window *window)
+int		ft_closing(t_game *window)
 {
 		mlx_destroy_window(window->mlx, window->win);
 		printf("Exiting so_long");
@@ -25,16 +25,10 @@ int	main(int ac, char **av)
 {
 	if (ac == 2)
 	{
-		t_window window;
+		t_game window;
 		int		width;
 		int		height;
 		int		fd;
-		// char	path_wall_tile[]="./images/lavatile.xpm";
-		// char	path_floor_tile[]="./images/floor.xpm";
-		// int		lavatile;
-		// int		floor;
-		// void	*img_wall;
-		// void	*img_floor;
 		char	*path_tile;
 		int		nb_col;
 		void	*img;
@@ -48,6 +42,7 @@ int	main(int ac, char **av)
 		int		y;
 
 		fd = open(av[1], O_RDONLY);
+		nb_col = 0;
 		line = get_next_line(fd);
 		nb_col = ft_strlen(line) - 1;
 		nb_row = 0;
@@ -77,9 +72,10 @@ int	main(int ac, char **av)
 		width = 64;
 		height = 64;
 		window.mlx = mlx_init();
-		window.win = mlx_new_window(window.mlx, nb_col*width, (row_index -1)*height, "so_long");
+		window.win = mlx_new_window(window.mlx, nb_col * width, (row_index -1)*height, "so_long");
 		printf("row_index is : %d\n", row_index);
 		j = 0;
+		y = 0;
 		while(j < nb_row)
 		{
 			i = 0;
