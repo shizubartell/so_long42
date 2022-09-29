@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:01 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/26 21:15:12 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:52:14 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,25 @@
 #include "../ft_printf/ft_printf.h"
 #include "../get_next_line/get_next_line.h"
 
-typedef struct	s_game {
+
+//*********************************************************//
+//**                Structure                           **//
+
+typedef struct	s_window {
     void    *mlx;
     void    *win;
     char    **tab;
-    int     col;
-}				t_game;
+    char    **map;
+    int     nb_col;
+    int     nb_row;
+    int     tile_size;
+}				t_window;
 
-int     ft_closing(t_game *window);
-int     key_setup(int keyset, t_game *window);
+int     ft_closing(t_window *window);
+int     key_setup(int keyset, t_window *window);
+
+//*********************************************************//
+//**                mapfunc.c                           **//
+
+void count_col_row(t_window *div, char *mpath);
+void store_map(t_window *div, char *mpath);

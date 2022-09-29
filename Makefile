@@ -4,7 +4,7 @@
 NAME				:= so_long
 
 CC					:= clang
-CFLAGS				:= -Wall -Wextra -Werror -g
+CFLAGS				:= -Wall -Wextra -g
 RM					:= rm -rf
 INCS				:= -I ./inc/
 HEADER				:= ./inc/so_long.h
@@ -32,14 +32,14 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # SOURCES
 
-SRC_FILES	:= so_long.c additional.c
+SRC_FILES	:= so_long.c additional.c mapfunc.c
 
 OBJ_FILES	:= ${SRC_FILES:.c=.o}
 SRC			:= $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			:= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # **************************************************************************** #
-# RULES
+# RULES -fsanitize=address
 
 all :	$(OBJ_DIR) $(NAME)
 
@@ -50,7 +50,7 @@ $(NAME): $(OBJ)
 	make -C $(FT_PRINTF_DIR)
 	# echo "make $(GET_NEXT_LINE_DIR)"
 	make -C $(GET_NEXT_LINE_DIR)
-	$(CC) $(OBJ) $(MLX_A) $(FT_PRINTF_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) $(MLX_A) $(FT_PRINTF_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME)
 	echo "$(GREEN)$(NAME) compiled and ready to go :)$(END_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
