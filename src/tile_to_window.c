@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:55:01 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/29 16:23:29 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/30 10:18:27 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void    set_tile(t_window *div, int j, int i)
 		div->ptile = "./images/boss64x64.xpm";
 	else if (div->map[j][i] == 'C')
 		div->ptile = "./images/collect64x64.xpm";
+	else if (div->map[j][i] == 'E')
+		div->ptile = "./images/exitb64x64.xpm";
 }
 
 void show_window(t_window *div)
@@ -50,4 +52,11 @@ void show_window(t_window *div)
 		j++;
 		y = y + div->tile_size;
 	}
+}
+
+void	display(t_window *div)
+{
+	div->tile_size = 64;
+	div->mlx = mlx_init();
+	div->win = mlx_new_window(div->mlx, div->nb_col * div->tile_size, div->nb_row * div->tile_size, "so_long");
 }

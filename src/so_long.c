@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:24 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/29 16:25:17 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/30 12:09:14 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ int	main(int ac, char **av)
 	
 	if (ac == 2)
 	{
-	t_window window;
-	window.nb_col=0;
+		t_window window;
+		window.nb_col=0;
 	
-	count_col_row(&window, av[1]);
-	store_map(&window, av[1]);
-	window.tile_size = 64;
-	window.mlx = mlx_init();
-	window.win = mlx_new_window(window.mlx, window.nb_col * window.tile_size, window.nb_row * window.tile_size, "so_long");
-	show_window(&window);
-	mlx_key_hook(window.win, key_setup, &window);
-	mlx_hook(window.win, 17, 0, ft_closing, &window);
-	mlx_loop(window.mlx);
+		count_col_row(&window, av[1]);
+		store_map(&window, av[1]);
+		if (checks(&window, av[1]) == 0)
+		{
+			display(&window);
+			show_window(&window);
+			mlx_key_hook(window.win, key_setup, &window);
+			mlx_hook(window.win, 17, 0, ft_closing, &window);
+			mlx_loop(window.mlx);
+		}
 	}
 	return (0);
 }
