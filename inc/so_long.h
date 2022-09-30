@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:01 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/30 12:08:20 by abartell         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:40:43 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,15 @@ void show_window(t_window *div);
 void	display(t_window *div);
 
 //*********************************************************//
-//**                mapcheck.c                          **//
+//**                mapcheck1.c                          **//
 
 int rectangular(t_window *div);
+int characters(t_window *div);
+int collectable(t_window *div);
 int checks(t_window *div, char *path);
+
+//*********************************************************//
+//**                mapcheck2.c                          **//
+
+int top_bottom_wall(t_window *div);
+int left_right_wall(t_window *div);

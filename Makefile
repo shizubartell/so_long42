@@ -33,7 +33,7 @@ END_COLOR	:= \033[0;39m
 # SOURCES
 
 SRC_FILES	:= so_long.c additional.c mapfunc.c tile_to_window.c\
-				mapcheck.c
+				mapcheck1.c mapcheck2.c
 
 OBJ_FILES	:= ${SRC_FILES:.c=.o}
 SRC			:= $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -52,7 +52,7 @@ $(NAME): $(OBJ)
 	# echo "make $(GET_NEXT_LINE_DIR)"
 	make -C $(GET_NEXT_LINE_DIR)
 	$(CC) $(OBJ) $(MLX_A) $(FT_PRINTF_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME)
-	echo "$(GREEN)$(NAME) compiled and ready to go :)$(END_COLOR)"
+	echo "$(BLUE)$(NAME) compiled and ready to go :)$(END_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@ 
@@ -73,6 +73,6 @@ fclean: clean
 	make fclean -C $(GET_NEXT_LINE_DIR)
 
 re: fclean all
-	echo "$(GREEN) Cleaned up all files for $(NAME)!"
+	echo "$(GREEN)Cleaned up all files for $(NAME)!"
 
 .PHONY:		all clean fclean re
