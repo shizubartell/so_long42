@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:24 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/01 11:48:27 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:27:11 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_closing(t_window *window)
 {
 		mlx_destroy_window(window->mlx, window->win);
 		freemap(window);
-		printf("Exiting so_long");
+		printf("Exiting so_long\n");
 		exit (0);
 		return (0);
 }

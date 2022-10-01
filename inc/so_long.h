@@ -6,10 +6,12 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:01 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/01 11:36:22 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:29:37 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef SO_LONG_H
+# define SO_LONG_H
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,6 +20,11 @@
 #include "../ft_printf/ft_printf.h"
 #include "../get_next_line/get_next_line.h"
 
+#define W 13
+#define A 0
+#define S 1
+#define D 2
+#define ESC 53
 
 //*********************************************************//
 //**                Structure + Main                     **//
@@ -39,17 +46,25 @@ typedef struct	s_window {
     int     playercount;
     int     exitcount;
     int     collectcount;
+    int     moves;
 }				t_window;
+
+//*********************************************************//
+//**                additional.c                        **//
 
 int     ft_closing(t_window *window);
 int     key_setup(int keyset, t_window *window);
+void	move_right(t_window *div);
+void	move_left(t_window *div);
+void	move_up(t_window *div);
+void	move_down(t_window *div);
 
 //*********************************************************//
 //**                tile_to_window.c                    **//
 
 void count_col_row(t_window *div, char *mpath);
 void store_map(t_window *div, char *mpath);
-void    set_tile(t_window *div, int j, int i);
+char    *set_tile(t_window *div, int j, int i);
 void show_window(t_window *div);
 void	display(t_window *div);
 
@@ -77,3 +92,5 @@ int valid_path(t_window *div);
 void	malloc_maps(t_window *div);
 void	freemap(t_window *div);
 void	freemcopy(t_window *div);
+
+# endif

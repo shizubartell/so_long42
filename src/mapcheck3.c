@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:46:52 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/01 11:36:00 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:25:38 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ void	malloc_maps(t_window *div)
 
 void	freemap(t_window *div)
 {
-	int i = 0;
-
-	while (div->map[i])
-	{
-		if (div->map[i])
-			free(div->map[i]);
-		i++;
-	}
 	if (div->map)
 		free(div->map);
 }
@@ -40,12 +32,12 @@ void	freemcopy(t_window *div)
 {
 	int i = 0;
 
-	while (div->mcopy[i])
-	{
-		if (div->mcopy[i])
-			free(div->mcopy[i]);
-		i++;
-	}
+	// while (div->mcopy[i])
+	// {
+	// 	if (div->mcopy[i])
+	// 		free(div->mcopy[i]);
+	// 	i++;
+	// }
 	if (div->mcopy)
 		free(div->mcopy);
 }

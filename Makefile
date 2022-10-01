@@ -52,7 +52,7 @@ $(NAME): $(OBJ)
 	# echo "make $(GET_NEXT_LINE_DIR)"
 	make -C $(GET_NEXT_LINE_DIR)
 	$(CC) $(OBJ) $(MLX_A) $(FT_PRINTF_A) $(GET_NEXT_LINE_A) -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME)
-	echo "$(BLUE)$(NAME) compiled and ready to go :)$(END_COLOR)"
+	echo "$(BLUE)$(NAME) compiled and ready to play! :D$(END_COLOR)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@ 

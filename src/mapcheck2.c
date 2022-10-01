@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 14:03:05 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/01 11:45:21 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/01 12:16:54 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ int valid_path(t_window *div)
     if (div->allcount != div->reachcount)
     {
         ft_printf("No valid path to play the game!");
-        // freemap(div);
-        // freemcopy(div);
+        freemap(div);
+        freemcopy(div);
         return (1);
     }
     return (0);

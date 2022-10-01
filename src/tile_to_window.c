@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:55:01 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/30 17:10:16 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:25:27 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ void count_col_row(t_window *div, char *mpath)
 	line = get_next_line(fd);
 	div->nb_col = strlen(line) - 1;
 	nb_row = 0;
-	while(line != NULL)
+	while(line != 0)
 	{
 		line = get_next_line(fd);
 		nb_row++;
 	}
     div->nb_row = nb_row;
-	malloc_maps(div);
 	close(fd);
-	// div->map = malloc(sizeof(char *) * (div->nb_row + 1));
+	malloc_maps(div);
 }
 
 void store_map(t_window *div, char *mpath)
@@ -47,7 +46,7 @@ void store_map(t_window *div, char *mpath)
 	div->map[0] = line;
 	div->mcopy[0] = line2;
 	printf("%s", div->mcopy[0]);
-	while(line != NULL)
+	while(line != 0)
 	{
 		line = get_next_line(fd);
 		if (line)
@@ -62,7 +61,7 @@ void store_map(t_window *div, char *mpath)
 	close (fd);
 }
 
-void    set_tile(t_window *div, int j, int i)
+char	*set_tile(t_window *div, int j, int i)
 {
     div->ptile = 0;
 
@@ -76,6 +75,7 @@ void    set_tile(t_window *div, int j, int i)
 		div->ptile = "./images/collect64x64.xpm";
 	else if (div->map[j][i] == 'E')
 		div->ptile = "./images/exitb64x64.xpm";
+	return (div->ptile);
 }
 
 void show_window(t_window *div)
@@ -91,9 +91,9 @@ void show_window(t_window *div)
 		i = 0;
 		x = 0;
 		
-		while (div->map[j][i] != '\n' && div->map[j][i] != '\0')
+		while ((div->map[j][i] != '\n') && (div->map[j][i] != '\0'))
 		{
-			set_tile(div, j, i);
+			div->ptile = set_tile(div, j, i);
 			img = mlx_xpm_file_to_image(div->mlx, div->ptile, \
 			&div->tile_size, &div->tile_size);
 			mlx_put_image_to_window(div->mlx, div->win, img, x, y);
