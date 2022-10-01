@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:36:43 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/30 14:40:56 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/01 11:44:55 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int checks(t_window *div, char *path)
     i = i + collectable(div);
     i = i + top_bottom_wall(div);
     i = i + left_right_wall(div);
+    i = i + playerone(div);
+    i = i + exitone(div);
+    i = i + valid_path(div);
     if (i == 0)
         return (0);
     return (1);
@@ -37,7 +40,8 @@ int	rectangular(t_window *div)
 	{
 		if (ft_strlen(div->map[0]) != ft_strlen(div->map[i]))
 		{
-			ft_printf("Map is not rectangular!, first strlen: %d second strlen  %d\n", ft_strlen(div->map[0]), ft_strlen(div->map[i]));
+			ft_printf("Map is not rectangular!, first strlen: %d \
+            second strlen  %d\n", ft_strlen(div->map[0]), ft_strlen(div->map[i]));
 			return (1);
 		}
 		i++;
@@ -89,9 +93,39 @@ int collectable(t_window *div)
             }
             i++;
         }
+    div->collectcount = count;
     if (count <= 0)
         {
             ft_printf("No collectibles, check map!");
             return(1);
         }
+}
+
+int playerone(t_window *div)
+{
+	int	player = 0;
+    int i = 0;
+    int j = 0;
+
+	while (div->map[i])
+	{
+		j = 0;
+		while (div->map[i][j])
+		{
+			if (div->map[i][j] == 'P')
+            {
+                player++;
+                div->player_x_pos = i;
+                div->player_y_pos = j;
+            }
+			j++;
+		}
+		i++;
+	}
+    div->playercount = player;
+	if (player != 1)
+	{
+		ft_printf("More than one player!\n");
+        return (1);
+	}
 }

@@ -32,8 +32,8 @@ END_COLOR	:= \033[0;39m
 # **************************************************************************** #
 # SOURCES
 
-SRC_FILES	:= so_long.c additional.c mapfunc.c tile_to_window.c\
-				mapcheck1.c mapcheck2.c
+SRC_FILES	:= so_long.c additional.c tile_to_window.c \
+				mapcheck1.c mapcheck2.c mapcheck3.c \
 
 OBJ_FILES	:= ${SRC_FILES:.c=.o}
 SRC			:= $(addprefix $(SRC_DIR), $(SRC_FILES))

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:25:24 by abartell          #+#    #+#             */
-/*   Updated: 2022/09/30 12:09:14 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/01 11:48:27 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,23 @@
 int		ft_closing(t_window *window)
 {
 		mlx_destroy_window(window->mlx, window->win);
+		freemap(window);
 		printf("Exiting so_long");
 		exit (0);
 		return (0);
 }
 
-int	main(int ac, char **av)
+int	main(int argc, char **argv)
 {
 	
-	if (ac == 2)
+	if (argc == 2)
 	{
 		t_window window;
 		window.nb_col=0;
 	
-		count_col_row(&window, av[1]);
-		store_map(&window, av[1]);
-		if (checks(&window, av[1]) == 0)
+		count_col_row(&window, argv[1]);
+		store_map(&window, argv[1]);
+		if (checks(&window, argv[1]) == 0)
 		{
 			display(&window);
 			show_window(&window);
