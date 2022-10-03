@@ -4,7 +4,7 @@
 NAME				:= so_long
 
 CC					:= clang
-CFLAGS				:= -Wall -Wextra -g
+CFLAGS				:= -Wall -Werror -Wextra -g
 RM					:= rm -rf
 INCS				:= -I ./inc/
 HEADER				:= ./inc/so_long.h

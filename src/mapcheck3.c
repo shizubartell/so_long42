@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:46:52 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/01 16:25:38 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:37:57 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,33 @@ void	malloc_maps(t_window *div)
 		exit(0);
 }
 
-void	freemap(t_window *div)
+int	playermsg(t_window *div)
 {
-	if (div->map)
-		free(div->map);
+	if (div->playercount != 1)
+	{
+		ft_printf("More than one player!\n");
+		exit(0);
+		return (1);
+	}
+	return (0);
 }
 
-void	freemcopy(t_window *div)
+int	bot_wall(t_window *div)
 {
-	int i = 0;
+	int	i;
+	int	bot_row;
 
-	// while (div->mcopy[i])
-	// {
-	// 	if (div->mcopy[i])
-	// 		free(div->mcopy[i]);
-	// 	i++;
-	// }
-	if (div->mcopy)
-		free(div->mcopy);
+	i = 0;
+	bot_row = div->nb_row - 1;
+	while (div->map[bot_row][i] != '\0' && div->map[bot_row][i] != '\n')
+	{
+		if (div->map[bot_row][i] != '1')
+		{
+			ft_printf("Bottom wall is broken!\n");
+			exit(0);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
